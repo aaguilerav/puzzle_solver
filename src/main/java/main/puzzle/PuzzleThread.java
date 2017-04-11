@@ -11,7 +11,7 @@ import java.util.Date;
 public class PuzzleThread implements Runnable {
 
 	private ArrayList<Piece> PIECES;
-	private ArrayList<PuzzleSolution> SOLUTIONS;
+	private ArrayList<String> SOLUTIONS;
 	private int from;
 	private int to;
 	private boolean iAmDone = false;
@@ -21,7 +21,7 @@ public class PuzzleThread implements Runnable {
 			int from,
 			int to,
 			ArrayList<Piece> PIECES,
-			ArrayList<PuzzleSolution> SOLUTIONS) {
+			ArrayList<String> SOLUTIONS) {
 		this.from = from;
 		this.to = to;
 		this.PIECES = PIECES;
@@ -37,16 +37,12 @@ public class PuzzleThread implements Runnable {
 	}
 	
 	private synchronized void registerSolution(PuzzleSolution localSolution) {
-		PuzzleSolution newSolution = new PuzzleSolution(localSolution);
-		newSolution.obtainFingerprint();
-		for (PuzzleSolution ps : SOLUTIONS) {
-			if (ps.getFingerprint().equals(newSolution.getFingerprint())) {
-				return;
-			}
+		String serializedSolution = localSolution.serializeVisualPlayground();
+		if (!SOLUTIONS.contains(serializedSolution)) {
+			SOLUTIONS.add(serializedSolution);
+			System.out.println("-= SOLUTION FOUND =-");
+			System.out.println(serializedSolution);
 		}
-		SOLUTIONS.add(newSolution);
-		System.out.println("-= SOLUTION FOUND =-");
-		System.out.println(localSolution.serializeVisualPlayground());
 	}
 	
 	private void solvePuzzle(
@@ -83,7 +79,6 @@ public class PuzzleThread implements Runnable {
 			}
 		}
 		this.iAmDone = true;
-		System.out.println("Worker Finished!!!");
-		System.out.println(new Date());
+		System.out.println("Worker Finished!!!: " + (new Date()));
 	}
 }

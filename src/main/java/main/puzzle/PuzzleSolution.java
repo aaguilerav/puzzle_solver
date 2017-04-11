@@ -183,7 +183,6 @@ public class PuzzleSolution {
 				result += this.visualPlayground[i][j] + " ";
 			result += "\r\n";
 		}
-		result += "\r\n";
 		return result;
 	}
 

@@ -3,11 +3,12 @@
 	<groupId>main.puzzle</groupId>
 	<artifactId>puzzle-solver</artifactId>
 	<name>puzzle-solver</name>
-	<version>0.0.1</version>
+	<version>0.0.2</version>
 
 	<properties>
 		<project.name>puzzle-solver</project.name>
-		<project.version>0.0.1</project.version>
+		<project.version>0.0.2</project.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
 	<build>

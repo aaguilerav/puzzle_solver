@@ -12,7 +12,7 @@ import java.util.Date;
 public class Start {
 
 	public static final ArrayList<Piece> PIECES = new ArrayList<Piece>();
-	public static final ArrayList<PuzzleSolution> SOLUTIONS = new ArrayList<PuzzleSolution>();
+	public static final ArrayList<String> SOLUTIONS = new ArrayList<String>();
 	public static final ArrayList<PuzzleThread> WORKERS = new ArrayList<PuzzleThread>();
 
 	public static void main(String[] args) throws IOException {
@@ -35,10 +35,12 @@ public class Start {
 
 		LoadConfig.loadConfigurations(PIECES);
 
-		WORKERS.add(new PuzzleThread(0, 2, 					PIECES, SOLUTIONS));
-		WORKERS.add(new PuzzleThread(3, 5, 					PIECES, SOLUTIONS));
-		WORKERS.add(new PuzzleThread(6, 8,					PIECES, SOLUTIONS));
-		WORKERS.add(new PuzzleThread(9, PIECES.size() - 1,	PIECES, SOLUTIONS));
+		WORKERS.add(new PuzzleThread(0, 1, 					PIECES, SOLUTIONS));
+		WORKERS.add(new PuzzleThread(2, 3, 					PIECES, SOLUTIONS));
+		WORKERS.add(new PuzzleThread(4, 5, 					PIECES, SOLUTIONS));
+		WORKERS.add(new PuzzleThread(6, 7, 					PIECES, SOLUTIONS));
+		WORKERS.add(new PuzzleThread(8, 9,					PIECES, SOLUTIONS));
+		WORKERS.add(new PuzzleThread(10, PIECES.size() - 1,	PIECES, SOLUTIONS));
 
 		for (PuzzleThread worker: WORKERS) {
 			Thread t = new Thread(worker);
@@ -48,18 +50,17 @@ public class Start {
 
 		boolean areWorkersDone = false;
 		while (!areWorkersDone) {
-			System.out.println(new Date());
-			System.out.println("Number of Solutions so far: " + SOLUTIONS.size());
+			System.out.println((new Date()) + ", Number of Solutions so far: " + SOLUTIONS.size());
 			areWorkersDone = true;
 			for (PuzzleThread worker: WORKERS) {
+				System.out.println("Worker status: " + worker.isiAmDone());
 				areWorkersDone = (areWorkersDone && worker.isiAmDone());
 			}
-			System.out.println("Are Workers Done?: " + areWorkersDone);
-			
+			System.out.println("Are All Workers Done?: " + areWorkersDone);
+
 			// Wait 15 min. and then ask again about the status.
 			try{Thread.sleep(900000);}catch(Exception ex){}
 		}
-		System.out.println("We're Finished!!!");
-		System.out.println(new Date());
+		System.out.println((new Date()) + ", Finally!, We're DONE!!!");
 	}
 }
