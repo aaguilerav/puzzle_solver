@@ -16,6 +16,7 @@ public class PuzzleThread implements Runnable {
 	private int to;
 	private boolean iAmDone = false;
 	private PuzzleSolution snapshot;
+	private int localSolutionsCounter = 0;
 	
 	public PuzzleThread(
 			int from,
@@ -35,10 +36,15 @@ public class PuzzleThread implements Runnable {
 	public String getSnapshot() {
 		return (snapshot != null)?(snapshot.serializeVisualPlayground()):("NO SNAPSHOT YET.");
 	}
-	
+
+	public int getLocalSolutionsCounter() {
+		return localSolutionsCounter;
+	}
+
 	private synchronized void registerSolution(PuzzleSolution localSolution) {
 		String serializedSolution = localSolution.serializeVisualPlayground();
 		if (!SOLUTIONS.contains(serializedSolution)) {
+			this.localSolutionsCounter++;
 			SOLUTIONS.add(serializedSolution);
 			System.out.println("-= SOLUTION FOUND =-");
 			System.out.println(serializedSolution);
@@ -79,6 +85,9 @@ public class PuzzleThread implements Runnable {
 			}
 		}
 		this.iAmDone = true;
-		System.out.println("Worker Finished!!!: " + (new Date()));
+		System.out.println("Worker Finished!!!: " + 
+							(new Date()) + 
+							"#Solutions: " + 
+							this.localSolutionsCounter);
 	}
 }

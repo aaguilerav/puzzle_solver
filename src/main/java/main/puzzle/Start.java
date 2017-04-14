@@ -34,13 +34,17 @@ public class Start {
 		System.out.println("+---------------------------------------+");
 
 		LoadConfig.loadConfigurations(PIECES);
-
+/*
 		WORKERS.add(new PuzzleThread(0, 1, 					PIECES, SOLUTIONS));
 		WORKERS.add(new PuzzleThread(2, 3, 					PIECES, SOLUTIONS));
 		WORKERS.add(new PuzzleThread(4, 5, 					PIECES, SOLUTIONS));
 		WORKERS.add(new PuzzleThread(6, 7, 					PIECES, SOLUTIONS));
 		WORKERS.add(new PuzzleThread(8, 9,					PIECES, SOLUTIONS));
 		WORKERS.add(new PuzzleThread(10, PIECES.size() - 1,	PIECES, SOLUTIONS));
+*/
+		for (int q=0; q<PIECES.size(); q++) {
+			WORKERS.add(new PuzzleThread(q, q, PIECES, SOLUTIONS));
+		}
 
 		for (PuzzleThread worker: WORKERS) {
 			Thread t = new Thread(worker);
@@ -53,7 +57,10 @@ public class Start {
 			System.out.println((new Date()) + ", Number of Solutions so far: " + SOLUTIONS.size());
 			areWorkersDone = true;
 			for (PuzzleThread worker: WORKERS) {
-				System.out.println("Worker status: " + worker.isiAmDone());
+				System.out.println("Worker finished: " + 
+									worker.isiAmDone() + 
+									", #Solutions: " + 
+									worker.getLocalSolutionsCounter());
 				areWorkersDone = (areWorkersDone && worker.isiAmDone());
 			}
 			System.out.println("Are All Workers Done?: " + areWorkersDone);
