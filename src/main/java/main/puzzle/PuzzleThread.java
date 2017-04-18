@@ -14,6 +14,9 @@ public class PuzzleThread implements Runnable {
 	private ArrayList<String> SOLUTIONS;
 	private int from;
 	private int to;
+	private int currentPiece;
+	private int currentConfig;
+	private long start;
 	private boolean iAmDone = false;
 	private PuzzleSolution snapshot;
 	private int localSolutionsCounter = 0;
@@ -46,11 +49,18 @@ public class PuzzleThread implements Runnable {
 		if (!SOLUTIONS.contains(serializedSolution)) {
 			this.localSolutionsCounter++;
 			SOLUTIONS.add(serializedSolution);
-			System.out.println("-= SOLUTION FOUND =-");
+			long execTime = System.currentTimeMillis() - this.start;
+			this.start = System.currentTimeMillis();
+			System.out.println("Piece: " + 
+								this.currentPiece + 
+								", Config: " + 
+								this.currentConfig + 
+								", Solution Found after (ms): " + 
+								execTime);
 			System.out.println(serializedSolution);
 		}
 	}
-	
+
 	private void solvePuzzle(
 			Piece p, 
 			PieceConfig cfg,
@@ -80,6 +90,9 @@ public class PuzzleThread implements Runnable {
 		for (int i=this.from; i<=this.to; i++) {
 			Piece p = PIECES.get(i);
 			for (PieceConfig cfg: p.getPieceConfigurations()) {
+				this.currentPiece = p.getId();
+				this.currentConfig = cfg.getId();
+				this.start = System.currentTimeMillis();
 				PuzzleSolution solution = new PuzzleSolution();
 				this.solvePuzzle(p, cfg, solution);
 			}

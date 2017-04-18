@@ -34,14 +34,7 @@ public class Start {
 		System.out.println("+---------------------------------------+");
 
 		LoadConfig.loadConfigurations(PIECES);
-/*
-		WORKERS.add(new PuzzleThread(0, 1, 					PIECES, SOLUTIONS));
-		WORKERS.add(new PuzzleThread(2, 3, 					PIECES, SOLUTIONS));
-		WORKERS.add(new PuzzleThread(4, 5, 					PIECES, SOLUTIONS));
-		WORKERS.add(new PuzzleThread(6, 7, 					PIECES, SOLUTIONS));
-		WORKERS.add(new PuzzleThread(8, 9,					PIECES, SOLUTIONS));
-		WORKERS.add(new PuzzleThread(10, PIECES.size() - 1,	PIECES, SOLUTIONS));
-*/
+
 		for (int q=0; q<PIECES.size(); q++) {
 			WORKERS.add(new PuzzleThread(q, q, PIECES, SOLUTIONS));
 		}
