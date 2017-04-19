@@ -51,7 +51,8 @@ public class PuzzleThread implements Runnable {
 			SOLUTIONS.add(serializedSolution);
 			long execTime = System.currentTimeMillis() - this.start;
 			this.start = System.currentTimeMillis();
-			System.out.println("Piece: " + 
+			System.out.println((new Date()) + 
+								", Piece: " + 
 								this.currentPiece + 
 								", Config: " + 
 								this.currentConfig + 

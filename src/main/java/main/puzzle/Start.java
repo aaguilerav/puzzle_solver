@@ -30,7 +30,7 @@ public class Start {
 		System.out.println("|           |           |   |           |");
 		System.out.println("+-----------+-----------+---+-----------+");
 		System.out.println("+---------------------------------------+");
-		System.out.println("|             PUZZLE SOLVER             |");
+		System.out.println("|         PUZZLE SOLVER v0.0.5          |");
 		System.out.println("+---------------------------------------+");
 
 		LoadConfig.loadConfigurations(PIECES);
