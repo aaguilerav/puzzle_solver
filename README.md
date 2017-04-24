@@ -6,6 +6,4 @@ RESULTS:
 
 In a QuadCore CPU, 16 GB Ram, SSD, desktop computer, the version 0.0.3 of this software delivered the following results:
 
-Number of solutions found: 9356
-Number of total hours of computation: 54.25 hours
-Time on average to find a solution: 20 seconds.
+Number of solutions found: 9356, Number of total hours of computation: 54.25 hours, Time on average to find a solution: 20 seconds.
