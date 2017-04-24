@@ -1,4 +1,4 @@
-This project finds all possible solution to a 12 pieces puzzle. Check the document ARTICLE-1_Puzzle-solver_v2.pdf for more details.
+This project finds all possible solutions to a 12 pieces puzzle. Check the document ARTICLE-1_Puzzle-solver_v2.pdf for more details.
 
 
 RESULTS: 
