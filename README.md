@@ -156,7 +156,7 @@ What the above code says is:
 
 Let’s break into smaller pieces each one of the steps that are not obvious from a programming perspective (that means, I’m not explaining what a for loop is).
 
-##### How to find “Incompatible Spaces”?
+#### How to find “Incompatible Spaces”?
 
 Let’s begin explaining this with an example. Suppose that after several computations of the algorithm, we have the following state:
 
@@ -176,7 +176,7 @@ And when we try to place pieces within these arrays with isolated areas, we test
 
 In this example, such array is in the middle with the isolated “area” made of 2 squares as I mentioned before.
 
-##### Placing pieces in the puzzle board
+#### Placing pieces in the puzzle board
 
 What we do here is “sliding” the pieces along the puzzle board until they “fit”.
 
@@ -191,11 +191,11 @@ In a more complex scenario, placing a piece could mean testing almost the entire
 
 ![Fig10](https://raw.githubusercontent.com/aaguilerav/puzzle_solver/master/src/test/resources/fig10.png)
 
-##### The recursive call on each combination of Pieces and Positions (Configurations)
+#### The recursive call on each combination of Pieces and Positions (Configurations)
 
 The recursive call on each combination of Pieces and Configurations is very important because this is what enables that each possible combination of Pieces and Positions within the puzzle board is tested.
 
-##### How to determine when the puzzle is solved?
+#### How to determine when the puzzle is solved?
 
 Well, that’s the easiest part of the problem, just find any “empty” space within the puzzle board and, if successful, it is not solved, otherwise, You’re Lucky! You found a Solution!
 
