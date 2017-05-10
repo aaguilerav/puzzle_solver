@@ -113,3 +113,119 @@ As you perhaps have already noticed, the different positions (or configurations)
 ### Translating the algorithm into computer terms
 
 Now that we have a data structure where we can find all the different pieces and their different positions (configurations), let’s write the main piece of code in charge of trying every possible combination of pieces and positions:
+
+```Java
+solvePuzzle(Piece p, PieceConfiguration config) {
+    if (!areThereIncompatibleSpaces()) {
+        if (tryToPutPieceIntoPlayground(p, config)) {
+            if (!isPuzzleSolved()) {
+                for (Piece pp: PIECES) {
+                    if (!isPieceAlreadyInPlayground(pp)) {
+                        for (PieceConfig pConfig: pp.getPieceConfigurations()) {
+                            solvePuzzle(pp, pConfig);
+                        }
+                    }
+                }
+            } else {
+                registerSolution();
+            }
+        }
+    }
+}
+
+main(String[] args) {
+    loadAllPieces();
+    for (Piece p: PIECES) {
+        for (PieceConfiguration config: p. getPieceConfigurations ()) {
+            solvePuzzle(p, config);
+        }
+    }
+}
+```
+What the above code says is:
+* **1)**	All the Pieces and their possible positions are loaded into a data structure called PIECES (We already talked about this).
+* **2)**	For every Piece, and for every Piece's possible position, invoke something called "solvePuzzle".
+* **3)**	Within "solvePuzzle":
+* **3.1)** Check if there are NOT “incompatible spaces” (spaces where no piece could fit).  If successful go to step C, if not, go to step B.
+* **3.2)** "solvePuzzle" ends.
+* **3.3)** Try to put a piece into the puzzle board. If successful go to step E, if not, go to step D.
+* **3.4)** "solvePuzzle" ends.
+* **3.5)** Check if the Puzzle is NOT solved. If is not, go to step G, otherwise, go to step F.
+* **3.6)** "solvePuzzle" registers solution and ends.
+* **3.7)** For every Piece NOT PLACED in the puzzle board, and for every Piece's possible position (configuration), invoke something called "solvePuzzle".
+
+Let’s break into smaller pieces each one of the steps that are not obvious from a programming perspective (that means, I’m not explaining what a for loop is).
+
+##### How to find “Incompatible Spaces”?
+
+Let’s begin explaining this with an example. Suppose that after several computations of the algorithm, we have the following state:
+
+![Fig6](https://raw.githubusercontent.com/aaguilerav/puzzle_solver/master/src/test/resources/fig06.png)
+
+Here there are 3 "areas" in which we could place additional pieces, but, there is one where no piece could fit ([row: 1, col: 2] to [row: 2, col: 2]).
+
+![Fig7](https://raw.githubusercontent.com/aaguilerav/puzzle_solver/master/src/test/resources/fig07.png)
+
+In order to tell a computer how to spot these “areas”, we borrow a technique from image processing called [Region Growing](https://en.wikipedia.org/wiki/Region_growing).
+
+What we do basically is iterate along the puzzle board (an array 6x10 in size, made of 0’s and 1’s) and when we find a 0 (zero, or an “empty space”) we perform a recursive call on the “neighborhood” (the 4 cells, to the left, right, up and down of the current cell) and then repeat the process until no other 0 (zero, or an “empty space”) is found. (Within the code this is the XRay.java class). What we end up with is a collection of arrays that are as many as isolated areas are found:
+
+![Fig8](https://raw.githubusercontent.com/aaguilerav/puzzle_solver/master/src/test/resources/fig08.png)
+
+And when we try to place pieces within these arrays with isolated areas, we test if those fit. If at least ONE “area” is no place for all the pieces that are not already placed in the puzzle board, then the whole solution path is discarded because is taking nowhere.
+
+In this example, such array is in the middle with the isolated “area” made of 2 squares as I mentioned before.
+
+##### Placing pieces in the puzzle board
+
+What we do here is “sliding” the pieces along the puzzle board until they “fit”.
+
+By “sliding” I mean iterate from Top to Bottom and from Left to Right.
+By “fit” I mean that the sum of the values of the piece array that describes it, and the values of the cells of the puzzle board are less than 2, relative to the position of the piece on the puzzle board while is being “slid”.
+
+For example, here you can see how the first two pieces are placed:
+
+![Fig9](https://raw.githubusercontent.com/aaguilerav/puzzle_solver/master/src/test/resources/fig09.png)
+
+In a more complex scenario, placing a piece could mean testing almost the entire puzzle board for available space:
+
+![Fig10](https://raw.githubusercontent.com/aaguilerav/puzzle_solver/master/src/test/resources/fig10.png)
+
+##### The recursive call on each combination of Pieces and Positions (Configurations)
+
+The recursive call on each combination of Pieces and Configurations is very important because this is what enables that each possible combination of Pieces and Positions within the puzzle board is tested.
+
+##### How to determine when the puzzle is solved?
+
+Well, that’s the easiest part of the problem, just find any “empty” space within the puzzle board and, if successful, it is not solved, otherwise, You’re Lucky! You found a Solution!
+
+### The Results
+
+In a QuadCore CPU, 16 GB Ram, SSD, desktop computer, the version 0.0.3 (https://github.com/aaguilerav/puzzle_solver) of this software delivered the following results:
+
+Number of solutions found: 9356
+Number of total hours of computation: 54.25 hours
+Time on average to find a solution: 20 seconds.
+
+In the following graph, you can appreciate the number of solutions found over time (blue line) vs the average time that it took to find one solution at a given point in those 54.25 hours.
+
+![Fig11](https://raw.githubusercontent.com/aaguilerav/puzzle_solver/master/src/test/resources/fig11.png)
+
+If you want to see each one of the 9356 possible solutions you can do it here: https://raw.githubusercontent.com/aaguilerav/puzzle_solver/master/src/test/resources/puzzle-solver-0.0.3.txt
+
+### Possible Next Steps
+
+* Maybe using GPU processing power could give this program a big boost. Who knows, I need to try.
+* A possible enhancement could be “mirroring” each solution found horizontally and vertically. This means that, in theory the time that it now takes to find all 9356 possible solutions could be slashed by a factor of 3.
+
+![Fig12](https://raw.githubusercontent.com/aaguilerav/puzzle_solver/master/src/test/resources/fig12.png)
+
+![Fig13](https://raw.githubusercontent.com/aaguilerav/puzzle_solver/master/src/test/resources/fig13.png)
+
+### Additional Interesting Facts
+
+![Fig14](https://raw.githubusercontent.com/aaguilerav/puzzle_solver/master/src/test/resources/fig14.png)
+
+### Comments
+
+Please send any comment about this article to aaguilerav@me.com, If you find a bug or a better solution to this problem please share your ideas.
