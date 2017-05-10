@@ -203,9 +203,9 @@ Well, that’s the easiest part of the problem, just find any “empty” space 
 
 In a QuadCore CPU, 16 GB Ram, SSD, desktop computer, the version 0.0.3 (https://github.com/aaguilerav/puzzle_solver) of this software delivered the following results:
 
-Number of solutions found: 9356
-Number of total hours of computation: 54.25 hours
-Time on average to find a solution: 20 seconds.
+* Number of solutions found: **9356**
+* Number of total hours of computation: **54.25 hours**
+* Time on average to find a solution: **20 seconds**
 
 In the following graph, you can appreciate the number of solutions found over time (blue line) vs the average time that it took to find one solution at a given point in those 54.25 hours.
 
