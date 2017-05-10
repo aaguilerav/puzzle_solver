@@ -213,6 +213,30 @@ In the following graph, you can appreciate the number of solutions found over ti
 
 If you want to see each one of the 9356 possible solutions you can do it here: https://raw.githubusercontent.com/aaguilerav/puzzle_solver/master/src/test/resources/puzzle-solver-0.0.3.txt
 
+### Compiling, Packaging and Executing the software
+There is a script named `compile.sh` that you can use in order to compile and package the project. Or, just execute the following command: `mvn clean compile assembly:single`.
+
+The JAR file is created at `puzzle_solver/target`, just execute a `java -jar <jar file generated>`. At the beginning of the execution you'll see the following ASCII art:
+
+```
++-------+---+-------+-----------+---+---+
+|       |   |       |           |   |   |
+|   +---+   +---+   +---+   +---+   |   |
+|   |           |       |   |       |   |
+|   +-------+   +---+   |   +---+   |   |
+|   |       |   |   |   |   |   |   |   |
+|   |   +---+---+   +---+---+   |   |   |
+|   |   |   |           |       |   |   |
++---+   |   +---+   +---+   +---+---+   |
+|       |   |   |   |   |   |       |   |
++-------+   |   +---+   |   |       +---+
+|           |           |   |           |
++-----------+-----------+---+-----------+
++---------------------------------------+
+|         PUZZLE SOLVER v0.0.x          |
++---------------------------------------+
+```
+
 ### Possible Next Steps
 
 * Maybe using GPU processing power could give this program a big boost. Who knows, I need to try.
