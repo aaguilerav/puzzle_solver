@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/aaguilerav/puzzle_solver.svg?branch=master)](https://travis-ci.org/aaguilerav/puzzle_solver)
+
 # How to instruct a computer to find all possible solutions to a puzzle
 ---
 
