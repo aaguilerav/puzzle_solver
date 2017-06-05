@@ -156,7 +156,7 @@ What the above code says is:
 * **3.6)** "solvePuzzle" registers solution and ends.
 * **3.7)** For every Piece NOT PLACED in the puzzle board, and for every Piece's possible position (configuration), invoke something called "solvePuzzle".
 
-Let’s break into smaller pieces each one of the steps that are not obvious from a programming perspective (that means, I’m not explaining what a for loop is).
+Let’s break into smaller pieces each one of the steps that are not obvious from a programming perspective.
 
 #### How to find “Incompatible Spaces”?
 
