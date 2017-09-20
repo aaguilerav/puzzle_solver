@@ -148,11 +148,11 @@ What the above code says is:
 * **1)**	All the Pieces and their possible positions are loaded into a data structure called PIECES (We already talked about this).
 * **2)**	For every Piece, and for every Piece's possible position, invoke something called "solvePuzzle".
 * **3)**	Within "solvePuzzle":
-* **3.1)** Check if there are NOT “incompatible spaces” (spaces where no piece could fit).  If successful go to step C, if not, go to step B.
+* **3.1)** Check if there are NOT “incompatible spaces” (spaces where no piece could fit).  If successful go to step **3.3)**, if not, go to step **3.2)**.
 * **3.2)** "solvePuzzle" ends.
-* **3.3)** Try to put a piece into the puzzle board. If successful go to step E, if not, go to step D.
+* **3.3)** Try to put a piece into the puzzle board. If successful go to step **3.5)**, if not, go to step **3.4)**.
 * **3.4)** "solvePuzzle" ends.
-* **3.5)** Check if the Puzzle is NOT solved. If is not, go to step G, otherwise, go to step F.
+* **3.5)** Check if the Puzzle is NOT solved. If is not, go to step **3.7)**, otherwise, go to step **3.6)**.
 * **3.6)** "solvePuzzle" registers solution and ends.
 * **3.7)** For every Piece NOT PLACED in the puzzle board, and for every Piece's possible position (configuration), invoke something called "solvePuzzle".
 
