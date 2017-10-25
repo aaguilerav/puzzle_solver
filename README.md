@@ -1,7 +1,7 @@
 # How to instruct a computer to find all possible solutions to a puzzle
 ---
 
-[![Build Status](https://travis-ci.org/aaguilerav/puzzle_solver.svg?branch=master)](https://travis-ci.org/aaguilerav/puzzle_solver) [![Code Climate](https://codeclimate.com/github/aaguilerav/puzzle_solver/badges/gpa.svg)](https://codeclimate.com/github/aaguilerav/puzzle_solver)
+[![Build Status](https://travis-ci.org/aaguilerav/puzzle_solver.svg?branch=master)](https://travis-ci.org/aaguilerav/puzzle_solver)
 
 In professional software development, we don’t find algorithmically challenging problems so often. Sure, there are a lot of complex projects out there, but we must remember that despite the knowledge that we might have on a particular set of technologies, we also need to constantly polish our algorithm design skills.
 
