@@ -248,10 +248,6 @@ The JAR file is created at `puzzle_solver/target`, just execute a `java -jar <ja
 
 ![Fig13](https://raw.githubusercontent.com/aaguilerav/puzzle_solver/master/src/test/resources/fig13.png)
 
-### Additional Interesting Facts
-
-![Fig14](https://raw.githubusercontent.com/aaguilerav/puzzle_solver/master/src/test/resources/fig14.png)
-
 ### Comments
 
 Please send any comment about this article to aaguilerav@me.com, If you find a bug or a better solution to this problem please share your ideas.
