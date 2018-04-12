@@ -3,6 +3,8 @@
 
 [![Build Status](https://travis-ci.org/aaguilerav/puzzle_solver.svg?branch=master)](https://travis-ci.org/aaguilerav/puzzle_solver)
 
+[*Projects like this one are prototypes, that means that special attention was given to the problem itself rather than having a perfect software design.*]
+
 In professional software development, we don’t find algorithmically challenging problems so often. Sure, there are a lot of complex projects out there, but we must remember that despite the knowledge that we might have on a particular set of technologies, we also need to constantly polish our algorithm design skills.
 
 Having this in mind, I came across this puzzle and ask myself, how would I instruct a computer to find all possible solutions to this? Let’s find out.
