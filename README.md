@@ -244,7 +244,7 @@ The JAR file is created at `puzzle_solver/target`, just execute a `java -jar <ja
 ### Possible Next Steps
 
 * Maybe using GPU processing power could give this program a big boost. Who knows, I need to try.
-* A possible enhancement could be “mirroring” each solution found horizontally and vertically. This means that, in theory the time that it now takes to find all 9356 possible solutions could be slashed by a factor of 3.
+* A possible enhancement could be “mirroring” each solution found horizontally and vertically. This means that, in theory the time that it now takes to find all 9356 possible solutions could be slashed by a factor of 4.
 
 ![Fig12](https://raw.githubusercontent.com/aaguilerav/puzzle_solver/master/src/test/resources/fig12.png)
 
